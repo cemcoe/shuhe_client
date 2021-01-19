@@ -15,3 +15,15 @@ export function getHomePostList(page = 1, per_page = 10) {
     }
   })
 }
+
+/**
+ * Request Post Detail
+ * @param {number} id
+ */
+export function getPostDetail(id) {
+  return request({
+    method: "get",
+    url: `/posts/${id}`,
+  })
+}
+
