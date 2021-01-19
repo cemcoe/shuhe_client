@@ -1,12 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router'
-const Home = () => import('@/views/Home.vue') 
+const Home = () => import('@/views/Home.vue')
+const Following = () => import('@/views/Following.vue')
+const Island = () => import('@/views/Island.vue')
+const Message = () => import('@/views/Message.vue')
+const Profile = () => import('@/views/Profile.vue')
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },
+  {
+    path: '/following',
+    name: 'Following',
+    component: Following
+  },
+  {
+    path: '/island',
+    name: 'Island',
+    component: Island
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: Message
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
+  {
+    path: '/',
+    redirect: '/home',
+  }
 ]
 
 const router = createRouter({
