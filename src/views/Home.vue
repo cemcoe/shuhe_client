@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     home
+    <cem-button type="warning">button</cem-button>
   </div>
 </template>
 
