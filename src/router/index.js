@@ -4,6 +4,8 @@ const Following = () => import('@/views/Following.vue')
 const Island = () => import('@/views/Island.vue')
 const Message = () => import('@/views/Message.vue')
 const Profile = () => import('@/views/Profile.vue')
+const Post = () => import('@/views/Post.vue')
+const User = () => import('@/views/User.vue')
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/p/:pid',
+    name: 'Post',
+    component: Post
+  },
+  {
+    path: '/u/:uid',
+    name: 'User',
+    component: User
   },
   {
     path: '/',
