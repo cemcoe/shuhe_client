@@ -1,11 +1,15 @@
 <template>
   <p>{{ post.title }}</p>
+  <hr />
+  <div class="content" v-html="post.content"></div>
 </template>
 
 <script>
 import { onMounted, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
 import { getPostDetail } from "network/post.js";
+import marked from "marked";
+
 export default {
   setup() {
     const route = useRoute();
@@ -14,12 +18,15 @@ export default {
     const state = reactive({
       post: {
         title: "",
+        content: "",
       },
     });
 
     onMounted(async () => {
       const res = await getPostDetail(pid);
-      state.post = res.data.post;
+      const post = res.data.post;
+      state.post.title = post.title;
+      state.post.content = marked(post.content);
     });
 
     return {
@@ -29,5 +36,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.content {
+  line-height: 28px;
+}
+.content:deep(img) {
+  max-width: 96vw;
+  display: block;
+  margin: 10px auto;
+}
 </style>
