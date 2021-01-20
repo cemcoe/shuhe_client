@@ -11,4 +11,38 @@ export function getUserInfo(id) {
   })
 }
 
+/**
+ * User register
+ * @param {string} name
+ * @param {string} password
+ */
+export function register(name, password) {
+  return request({
+    method: "post",
+    url: '/users',
+    data: {
+      name,
+      password
+    },
+  })
+}
+
+/**
+ * User login
+ * @param {string} name
+ * @param {string} password
+ */
+export function login(name, password) {
+  return request({
+    method: "post",
+    url: '/login',
+    data: {
+      name,
+      password
+    },
+  })
+}
+
+
+
 

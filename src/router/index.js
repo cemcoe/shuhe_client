@@ -6,6 +6,7 @@ const Message = () => import('@/views/Message.vue')
 const Profile = () => import('@/views/Profile.vue')
 const Post = () => import('@/views/Post.vue')
 const User = () => import('@/views/User.vue')
+const Login = () => import('@/views/Login.vue')
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/p/:pid',
