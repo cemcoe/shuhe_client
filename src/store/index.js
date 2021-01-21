@@ -16,7 +16,12 @@ export default createStore({
       user.avatar = state.imgBaseUrl + user.avatar
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user))
-    }
+    },
+    signout(state) {
+      state.user = {};
+      state.token = '';
+      localStorage.clear();
+    },
   },
   actions: {
   },

@@ -43,6 +43,15 @@
         </ul>
       </div>
     </div>
+
+    <div>
+      <cem-button type="danger" v-if="user._id" @click="signout"
+        >退出登录</cem-button>
+
+      <div v-if="user._id">
+        <router-link :to="'/reset/' + user._id">更新用户信息</router-link>
+      </div>
+    </div>
   </section>
 
   <section v-else>
@@ -65,9 +74,14 @@ export default {
       return store.state.user;
     });
 
+    const signout = () => {
+      store.commit('signout')
+    }
+
     return {
       loginState,
       user,
+      signout,
     };
   },
 };
