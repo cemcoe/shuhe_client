@@ -14,6 +14,8 @@ export function request(config) {
   // 2. 请求拦截器，添加jwt token
 
   instance.interceptors.request.use(config => {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}` || ''
+    // 每个请求都重新设置有点耗费资源，一般token发生改变会是换账号登录，或token过期，可能会有更好的方案。
     return config
   }, error => {
     console.log(error)

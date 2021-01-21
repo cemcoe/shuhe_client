@@ -43,8 +43,10 @@
 
 <script>
 import { computed, reactive, toRefs } from "vue";
+import { useStore } from "vuex";
 const axios = require("axios");
 import { login, register } from "network/user";
+import { useRoute } from 'vue-router';
 
 export default {
   setup() {
@@ -55,6 +57,8 @@ export default {
       disable: true,
     });
 
+    const store = useStore()
+
     const loginClick = () => {
       // 按钮不可点击，并提示
       state.disable = false;
@@ -64,6 +68,12 @@ export default {
 
         if (res.status === 200) {
           console.log("成功");
+          // 将token保存到localStorage
+          const token = res.data.token
+          const user = res.data.user
+          // 交给mutation处理
+          store.commit('set_token', token)
+          store.commit('set_user', JSON.stringify(user))
         } else if (res.status === 401) {
           console.log("失败");
           state.password = "";
