@@ -44,6 +44,7 @@
 <script>
 import { computed, reactive, toRefs } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from 'vue-router'
 const axios = require("axios");
 import { login, register } from "network/user";
 import { useRoute } from 'vue-router';
@@ -58,6 +59,7 @@ export default {
     });
 
     const store = useStore()
+    const router = useRouter()
 
     const loginClick = () => {
       // 按钮不可点击，并提示
@@ -74,6 +76,10 @@ export default {
           // 交给mutation处理
           store.commit('set_token', token)
           store.commit('set_user', JSON.stringify(user))
+          // 路由跳转
+          
+          router.push('/')
+
         } else if (res.status === 401) {
           console.log("失败");
           state.password = "";
