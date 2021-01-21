@@ -12,7 +12,7 @@ export default createStore({
     },
     set_user(state, user) {
       state.user = user;
-      localStorage.setItem('user', user)
+      localStorage.setItem('user', JSON.stringify(user))
     }
   },
   actions: {

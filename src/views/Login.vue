@@ -75,7 +75,7 @@ export default {
           const user = res.data.user
           // 交给mutation处理
           store.commit('set_token', token)
-          store.commit('set_user', JSON.stringify(user))
+          store.commit('set_user', user)
           // 路由跳转
           
           router.push('/')
