@@ -7,6 +7,7 @@ const Profile = () => import('@/views/Profile.vue')
 const Post = () => import('@/views/Post.vue')
 const User = () => import('@/views/User.vue')
 const Login = () => import('@/views/Login.vue')
+const Editor = () => import('@/views/Editor.vue')
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/editor',
+    name: 'Editor',
+    component: Editor
   },
   {
     path: '/p/:pid',
