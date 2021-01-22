@@ -2,11 +2,11 @@
   <tab-bar>
     <tab-bar-item path="/home">
       <template v-slot:item-icon>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="home"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="home"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -16,11 +16,11 @@
 
     <tab-bar-item path="/following">
       <template v-slot:item-icon>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="following"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="following"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -30,11 +30,11 @@
 
     <tab-bar-item path="/island">
       <template v-slot:item-icon>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="island"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="island"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -44,11 +44,11 @@
 
     <tab-bar-item path="/message">
       <template v-slot:item-icon>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="message"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="message"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -58,11 +58,11 @@
 
     <tab-bar-item path="/profile">
       <template v-slot:item-icon>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="profile"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <img src="https://img.yzcdn.cn/vant/user-active.png" />
+        <cem-icon name="profile"></cem-icon>
       </template>
 
       <template v-slot:item-text>

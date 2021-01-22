@@ -59,7 +59,7 @@ export default {
   font-size: 14px;
 }
 
-.tab-bar-item:deep(img) {
+.tab-bar-item:deep(.icon) {
   width: 24px;
   height: 24px;
   margin-top: 3px;
