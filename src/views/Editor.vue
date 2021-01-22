@@ -1,18 +1,23 @@
 <template>
   <header>
     <div class="left">
-      <button class="item">返回</button>
-      <span class="item">0字</span>
+      <button class="item" @click="goBack">返回</button>
+      <span class="item">{{ wordcount }}字</span>
     </div>
     <div class="right">
-      <button class="item">预览</button>
-      <button class="item">发布</button>
+      <button class="item" @click="preview">预览</button>
+      <button class="item" @click="publish">发布</button>
     </div>
   </header>
 
   <div class="content">
-    <input type="text" id="title" placeholder="请输入标题" />
-    <textarea name="post" id="post" placeholder="请输入正文"></textarea>
+    <input v-model="title" type="text" id="title" placeholder="请输入标题" />
+    <textarea
+      v-model="content"
+      name="post"
+      id="post"
+      placeholder="请输入正文"
+    ></textarea>
   </div>
 
   <div class="pannel">
@@ -30,7 +35,59 @@
 </template>
 
 <script>
-export default {};
+import { reactive, toRefs, watch } from "vue";
+import { useRouter } from "vue-router";
+export default {
+  name: "Editor",
+  setup() {
+    const state = reactive({
+      title: "",
+      content: "",
+      status: 1,
+      wordcount: 0,
+    });
+    const router = useRouter();
+
+    watch(
+      () => state.content,
+      (newContent) => {
+        console.log(newContent.length);
+        state.wordcount = newContent.length;
+      }
+    );
+
+    const publish = () => {
+      let post = {
+        title: state.title,
+        content: state.content,
+        status: state.status,
+      };
+
+      console.log("publish", post);
+    };
+
+    const preview = () => {
+      let post = {
+        title: state.title,
+        content: state.content,
+        status: state.status,
+      };
+
+      console.log("preview", post);
+    };
+
+    const goBack = () => {
+      router.back();
+    };
+
+    return {
+      ...toRefs(state),
+      preview,
+      publish,
+      goBack,
+    };
+  },
+};
 </script>
 
 <style scoped>
