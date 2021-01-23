@@ -10,24 +10,30 @@
     </div>
   </header>
 
-  <div class="content">
-    <input v-model="title" type="text" id="title" placeholder="请输入标题" />
-    <textarea
-      v-model="content"
-      name="post"
-      id="post"
-      placeholder="请输入正文"
-    ></textarea>
+  <div class="preview" v-show="isPreview">
+    <div v-html="previewContent"></div>
   </div>
 
-  <div class="pannel">
-    <div class="symbols">
-      <button @click="insert('![]()')">图片</button>
-      <button @click="insert('[]()')">链接</button>
-      <button @click="insert('# ')">#</button>
-      <button @click="insert('- ')">-</button>
+  <div class="editor" v-show="!isPreview">
+    <div class="content">
+      <input v-model="title" type="text" id="title" placeholder="请输入标题" />
+      <textarea
+        v-model="content"
+        name="post"
+        id="post"
+        placeholder="请输入正文"
+      ></textarea>
     </div>
-    <div class="setting">设置</div>
+
+    <div class="pannel">
+      <div class="symbols">
+        <button @click="insert('![]()')">图片</button>
+        <button @click="insert('[]()')">链接</button>
+        <button @click="insert('# ')">#</button>
+        <button @click="insert('- ')">-</button>
+      </div>
+      <div class="setting">设置</div>
+    </div>
   </div>
 </template>
 
@@ -35,6 +41,7 @@
 import { reactive, toRefs, watch } from "vue";
 import { useRouter } from "vue-router";
 import { createPost } from "network/post";
+import marked from "marked";
 export default {
   name: "Editor",
   setup() {
@@ -43,6 +50,8 @@ export default {
       content: "",
       status: 1,
       wordcount: 0,
+      isPreview: false,
+      previewContent: "",
     });
     const router = useRouter();
 
@@ -74,17 +83,20 @@ export default {
     };
 
     const preview = () => {
-      let post = {
-        title: state.title,
-        content: state.content,
-        status: state.status,
-      };
+      state.isPreview = true;
+      state.previewContent = marked(state.content);
 
       console.log("preview", post);
     };
 
     const goBack = () => {
-      router.back();
+      // 如果在预览状态下点击，则切换为编辑状态
+      // 如果是编辑状态，则路由切换
+      if (state.isPreview) {
+        state.isPreview = false;
+      } else {
+        router.back();
+      }
     };
 
     const insert = (value) => {
@@ -208,5 +220,9 @@ header .item {
   right: 0px;
   bottom: 0px;
   box-shadow: -4px 0px 4px rgb(148, 143, 143);
+}
+
+.preview {
+  margin-top: 44px;
 }
 </style>
