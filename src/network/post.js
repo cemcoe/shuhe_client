@@ -1,6 +1,20 @@
 import { request } from './request'
 
 /**
+ * Create New Post
+ * @param {object} post
+ */
+export function createPost(post) {
+  return request({
+    // 传一个对象过来，以后如果添加字段时就简单了
+    method: "post",
+    url: '/posts',
+    data: post,
+  })
+}
+
+
+/**
  * Request Home Post List
  * @param {number} page
  * @param {number} per_page

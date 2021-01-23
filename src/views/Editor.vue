@@ -37,6 +37,7 @@
 <script>
 import { reactive, toRefs, watch } from "vue";
 import { useRouter } from "vue-router";
+import { createPost } from "network/post";
 export default {
   name: "Editor",
   setup() {
@@ -62,6 +63,15 @@ export default {
         content: state.content,
         status: state.status,
       };
+
+      createPost(post).then((res) => {
+        console.log("文章创建成功", res);
+        // 文章创建成功， 跳转文章详情页
+        setTimeout(() => {
+          // 跳转到文章详情页
+          router.replace(`/p/${res._id}`);
+        }, 1000);
+      });
 
       console.log("publish", post);
     };
