@@ -22,13 +22,10 @@
 
   <div class="pannel">
     <div class="symbols">
-      <button>图片</button>
-      <button>A</button>
-      <button>链接</button>
-      <button>#</button>
-      <button>#</button>
-      <button>#</button>
-      <button>#</button>
+      <button @click="insert('![]()')">图片</button>
+      <button @click="insert('[]()')">链接</button>
+      <button @click="insert('# ')">#</button>
+      <button @click="insert('- ')">-</button>
     </div>
     <div class="setting">设置</div>
   </div>
@@ -90,11 +87,26 @@ export default {
       router.back();
     };
 
+    const insert = (value) => {
+      console.log("insert");
+      const content = document.querySelector("#post");
+      // 找到插入位置
+      const startPos = content.selectionStart;
+      const endPos = content.selectionEnd;
+      console.log([startPos, endPos]);
+      // 处理字符串
+      const startStr = state.content.substring(0, startPos);
+      const endStr = state.content.substring(endPos, state.content.length);
+      state.content = startStr + value + endStr;
+      console.log(startStr, value, endStr);
+    };
+
     return {
       ...toRefs(state),
       preview,
       publish,
       goBack,
+      insert,
     };
   },
 };
