@@ -40,8 +40,8 @@
 <script>
 import { reactive, toRefs, watch } from "vue";
 import { useRouter } from "vue-router";
-import { createPost } from "network/post";
-import marked from "marked";
+
+import usePost from "./usePost.js";
 export default {
   name: "Editor",
   setup() {
@@ -63,31 +63,7 @@ export default {
       }
     );
 
-    const publish = () => {
-      let post = {
-        title: state.title,
-        content: state.content,
-        status: state.status,
-      };
-
-      createPost(post).then((res) => {
-        console.log("文章创建成功", res);
-        // 文章创建成功， 跳转文章详情页
-        setTimeout(() => {
-          // 跳转到文章详情页
-          router.replace(`/p/${res._id}`);
-        }, 1000);
-      });
-
-      console.log("publish", post);
-    };
-
-    const preview = () => {
-      state.isPreview = true;
-      state.previewContent = marked(state.content);
-
-      console.log("preview", post);
-    };
+    const { publish, preview } = usePost(state);
 
     const goBack = () => {
       // 如果在预览状态下点击，则切换为编辑状态
