@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-const Home = () => import('@/views/Home.vue')
-const Following = () => import('@/views/Following.vue')
-const Island = () => import('@/views/Island.vue')
-const Message = () => import('@/views/Message.vue')
-const Profile = () => import('@/views/Profile.vue')
-const Post = () => import('@/views/Post.vue')
-const User = () => import('@/views/User.vue')
-const Login = () => import('@/views/Login.vue')
-const Editor = () => import('@/views/Editor.vue')
+const Home = () => import('@/views/Home/Home.vue')
+const Following = () => import('@/views/Following/Following.vue')
+const Island = () => import('@/views/Island/Island.vue')
+const Message = () => import('@/views/Message/Message.vue')
+const Profile = () => import('@/views/Profile/Profile.vue')
+const Post = () => import('@/views/Post/Post.vue')
+const User = () => import('@/views/User/User.vue')
+const Login = () => import('@/views/Login/Login.vue')
+const Editor = () => import('@/views/Editor/Editor.vue')
 
 const routes = [
   {
