@@ -1,10 +1,14 @@
 import { createStore } from 'vuex'
+import {
+  listfollowingUser,
+} from "network/user";
 
 export default createStore({
   state: {
     token: localStorage.getItem('token'),
     user: JSON.parse(localStorage.getItem('user')),
-    imgBaseUrl: "https://jian.cemcoe.com/jianshu_api"
+    imgBaseUrl: "https://jian.cemcoe.com/jianshu_api",
+    followingUsers: JSON.parse(localStorage.getItem('followingUsers')),
   },
   mutations: {
     set_token(state, token) {
@@ -22,8 +26,20 @@ export default createStore({
       state.token = '';
       localStorage.clear();
     },
+    // 设置用户关注列表
+    receive_following_user(state, followingUsers) {
+      state.followingUsers = followingUsers
+      localStorage.setItem("followingUsers", JSON.stringify(followingUsers));
+    },
   },
   actions: {
+    async listfollowingUser(context) {
+      const result = await listfollowingUser(context.state.user._id);
+      const followingUsers = result.data.following
+      // 触发mutations更改state
+      context.commit('receive_following_user', followingUsers)
+    },
+
   },
   modules: {
   }

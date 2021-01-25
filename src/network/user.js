@@ -43,6 +43,17 @@ export function login(name, password) {
   })
 }
 
-
-
-
+/**
+ * listfollowingUser
+ * @param {string} id
+ * @param {string} type
+ */
+export function listfollowingUser(id, type = "users") {
+  return request({
+    method: "get",
+    url: `/users/${id}/following`,
+    params: {
+      type,
+    }
+  })
+}

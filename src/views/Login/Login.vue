@@ -76,6 +76,8 @@ export default {
           // 交给mutation处理
           store.commit('set_token', token)
           store.commit('set_user', user)
+          // 请求关注列表并保存到store中
+          store.dispatch('listfollowingUser')
           // 路由跳转
           
           router.push('/')
