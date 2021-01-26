@@ -14,6 +14,7 @@ import { listfollowingUser } from "network/user";
 import PostList from "components/content/PostList/PostList.vue";
 
 export default {
+  name: "Following",
   components: {
     FollowingUser,
     PostList,
