@@ -1,6 +1,13 @@
 <template>
-  <p>{{ post.title }}</p>
-  <hr />
+  <cem-nav-bar title="文章" @click-left="$router.back()">
+    <template #left>
+      <cem-icon name="back" />
+    </template>
+    <template #right>
+      <cem-icon name="more" />
+    </template>
+  </cem-nav-bar>
+  <h2>{{ post.title }}</h2>
   <div class="content" v-html="post.content"></div>
 </template>
 

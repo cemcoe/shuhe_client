@@ -1,4 +1,5 @@
 <template>
+  <cem-nav-bar title="关注"> </cem-nav-bar>
   <following-user
     :followingUsers="followingUsers"
     :imgBaseUrl="imgBaseUrl"

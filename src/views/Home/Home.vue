@@ -1,14 +1,10 @@
 <template>
-  <div class="home">
-    home
-    <cem-button type="warning">button</cem-button>
-    <post-list :postList="postList"></post-list>
+  <cem-nav-bar title="书核"> </cem-nav-bar>
 
-    <div class="write">
-      <router-link to="/editor">
-        <cem-icon name="write"></cem-icon
-      ></router-link>
-    </div>
+  <post-list :postList="postList"></post-list>
+
+  <div class="write">
+    <router-link to="/editor"> <cem-icon name="write"></cem-icon></router-link>
   </div>
 </template>
 

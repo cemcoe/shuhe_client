@@ -1,4 +1,5 @@
 <template>
+  <cem-nav-bar title="我的"> </cem-nav-bar>
   <section v-if="loginState">
     <div class="user">
       <div class="profile" v-if="user._id">
@@ -46,7 +47,8 @@
 
     <div>
       <cem-button type="danger" v-if="user._id" @click="signout"
-        >退出登录</cem-button>
+        >退出登录</cem-button
+      >
 
       <div v-if="user._id">
         <router-link :to="'/reset/' + user._id">更新用户信息</router-link>
@@ -75,8 +77,8 @@ export default {
     });
 
     const signout = () => {
-      store.commit('signout')
-    }
+      store.commit("signout");
+    };
 
     return {
       loginState,
