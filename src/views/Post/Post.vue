@@ -1,12 +1,5 @@
 <template>
-  <cem-nav-bar title="文章" @click-left="$router.back()">
-    <template #left>
-      <cem-icon name="back" />
-    </template>
-    <template #right>
-      <cem-icon name="more" />
-    </template>
-  </cem-nav-bar>
+  <post-header></post-header>
   <div class="loading" v-if="isLoading">加载中。。。</div>
   <h2>{{ post.title }}</h2>
   <div class="content" v-html="post.content"></div>
@@ -17,8 +10,12 @@ import { onMounted, reactive, toRefs, ref } from "vue";
 import { useRoute } from "vue-router";
 import { getPostDetail } from "network/post.js";
 import marked from "marked";
+import PostHeader from "./PostHeader.vue";
 
 export default {
+  components: {
+    PostHeader,
+  },
   setup() {
     const route = useRoute();
     const pid = route.params.pid;
