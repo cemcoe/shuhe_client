@@ -5,7 +5,10 @@
     </keep-alive>
   </router-view>
 
-  <main-tab-bar></main-tab-bar>
+  <main-tab-bar
+    v-if="$route.meta.showFooter"
+    class="main-tab-bar"
+  ></main-tab-bar>
 </template>
 
 <script>
