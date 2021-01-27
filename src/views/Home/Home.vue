@@ -1,6 +1,8 @@
 <template>
   <cem-nav-bar title="书核"> </cem-nav-bar>
 
+  <div v-if="isLoading" class="loading">加载中。。。</div>
+
   <post-list :postList="postList"></post-list>
 
   <div class="write">
@@ -9,7 +11,7 @@
 </template>
 
 <script>
-import { onMounted, onBeforeMount, reactive, toRefs } from "vue";
+import { onMounted, onBeforeMount, reactive, toRefs, ref } from "vue";
 import { getHomePostList } from "network/post.js";
 import PostList from "components/content/PostList/PostList.vue";
 
@@ -20,15 +22,19 @@ export default {
       postList: [],
     });
 
+    const isLoading = ref(true);
+
     onMounted(async () => {
       const res = await getHomePostList();
       console.log(res);
       state.postList = res.data.post;
+      isLoading.value = false;
     });
 
     return {
       ...toRefs(state),
       // 对响应式对象 state 使用扩展运算符后，其内部属性就失去了响应性
+      isLoading,
     };
   },
   components: {

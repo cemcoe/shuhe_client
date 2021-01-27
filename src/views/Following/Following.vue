@@ -4,11 +4,14 @@
     :followingUsers="followingUsers"
     :imgBaseUrl="imgBaseUrl"
   ></following-user>
+  <div v-if="isLoading" class="loading">
+    加载中。。。
+  </div>
   <post-list :postList="postList"></post-list>
 </template>
 
 <script>
-import { computed, onMounted, reactive, toRefs } from "vue";
+import { computed, onMounted, reactive, toRefs, ref } from "vue";
 import { useStore } from "vuex";
 import FollowingUser from "./FollowingUser";
 import { listfollowingUser } from "network/user";
@@ -28,16 +31,19 @@ export default {
     const state = reactive({
       postList: [],
     });
+    const isLoading = ref(true)
 
     onMounted(async () => {
       const res = await listfollowingUser(store.state.user._id, "posts");
       state.postList = res.data.postList;
+      isLoading.value = false
     });
 
     return {
       followingUsers,
       imgBaseUrl,
       ...toRefs(state),
+      isLoading,
     };
   },
 };
