@@ -90,6 +90,16 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
 .user {
   width: 90%;
   margin: 10px auto;

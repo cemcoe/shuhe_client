@@ -96,10 +96,14 @@ export default {
   margin-bottom: 12px;
   background-color: #fff;
 }
+.post-item a {
+  text-decoration: none;
+}
 .title span {
   font-size: 16px;
   line-height: 24px;
   color: #000000;
+  font-weight: 700;
 }
 
 .abstract {
