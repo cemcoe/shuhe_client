@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  font-size: 18px;
+}
 .content {
   line-height: 28px;
 }
@@ -71,5 +74,8 @@ export default {
   max-width: 96vw;
   display: block;
   margin: 10px auto;
+}
+.content:deep(a) {
+  text-decoration: none;
 }
 </style>
