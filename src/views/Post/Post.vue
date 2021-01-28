@@ -1,9 +1,11 @@
 <template>
   <post-header></post-header>
   <div class="loading" v-if="isLoading">加载中。。。</div>
-  <author-info v-else :author="author"></author-info>
-  <h2>{{ post.title }}</h2>
-  <div class="content" v-html="post.content"></div>
+  <div v-else>
+    <h2>{{ post.title }}</h2>
+    <author-info :author="author"></author-info>
+    <div class="content" v-html="post.content"></div>
+  </div>
 </template>
 
 <script>
@@ -42,7 +44,8 @@ export default {
       const post = res.data.post;
       console.log(post);
       author.name = post.author.name;
-      author.avatar = 'https://jian.cemcoe.com/jianshu_api' + post.author.avatar;
+      author.avatar =
+        "https://jian.cemcoe.com/jianshu_api" + post.author.avatar;
       author._id = post.author._id;
 
       state.post.title = post.title;
