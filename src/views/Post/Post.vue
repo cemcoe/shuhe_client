@@ -26,11 +26,9 @@ export default {
     const pid = route.params.pid;
     const isLoading = ref(true);
 
-    const state = reactive({
-      post: {
-        title: "",
-        content: "",
-      },
+    const post = reactive({
+      title: "",
+      content: "",
     });
 
     let author = reactive({
@@ -39,22 +37,25 @@ export default {
       _id: "",
     });
 
-    onMounted(async () => {
+    const getPostInfo = async () => {
       const res = await getPostDetail(pid);
-      const post = res.data.post;
-      console.log(post);
-      author.name = post.author.name;
-      author.avatar =
-        "https://jian.cemcoe.com/jianshu_api" + post.author.avatar;
-      author._id = post.author._id;
+      const data = res.data.post;
+      console.log(data);
 
-      state.post.title = post.title;
-      state.post.content = marked(post.content);
+      author.name = data.author.name;
+      author.avatar =
+        "https://jian.cemcoe.com/jianshu_api" + data.author.avatar;
+      author._id = data.author._id;
+
+      post.title = data.title;
+      post.content = marked(data.content);
       isLoading.value = false;
-    });
+    };
+
+    onMounted(getPostInfo());
 
     return {
-      ...toRefs(state),
+      post,
       isLoading,
       author,
     };
