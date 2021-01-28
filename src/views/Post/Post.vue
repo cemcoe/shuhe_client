@@ -1,6 +1,7 @@
 <template>
   <post-header></post-header>
   <div class="loading" v-if="isLoading">加载中。。。</div>
+  <author-info v-else :author="author"></author-info>
   <h2>{{ post.title }}</h2>
   <div class="content" v-html="post.content"></div>
 </template>
@@ -11,10 +12,12 @@ import { useRoute } from "vue-router";
 import { getPostDetail } from "network/post.js";
 import marked from "marked";
 import PostHeader from "./PostHeader.vue";
+import AuthorInfo from "./AuthorInfo.vue";
 
 export default {
   components: {
     PostHeader,
+    AuthorInfo,
   },
   setup() {
     const route = useRoute();
@@ -28,9 +31,20 @@ export default {
       },
     });
 
+    let author = reactive({
+      name: "",
+      avatar: "",
+      _id: "",
+    });
+
     onMounted(async () => {
       const res = await getPostDetail(pid);
       const post = res.data.post;
+      console.log(post);
+      author.name = post.author.name;
+      author.avatar = 'https://jian.cemcoe.com/jianshu_api' + post.author.avatar;
+      author._id = post.author._id;
+
       state.post.title = post.title;
       state.post.content = marked(post.content);
       isLoading.value = false;
@@ -39,6 +53,7 @@ export default {
     return {
       ...toRefs(state),
       isLoading,
+      author,
     };
   },
 };
