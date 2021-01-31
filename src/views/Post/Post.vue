@@ -3,14 +3,15 @@
   <div class="loading" v-if="isLoading">加载中。。。</div>
   <div v-else>
     <h2>{{ post.title }}</h2>
-    <author-info :author="author"></author-info>
+    <author-info :author="author" :isFollowing="isFollowing"></author-info>
     <div class="content" v-html="post.content"></div>
   </div>
 </template>
 
 <script>
-import { onMounted, reactive, toRefs, ref } from "vue";
+import { onMounted, reactive, toRefs, ref, computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 import { getPostDetail } from "network/post.js";
 import marked from "marked";
 import PostHeader from "./PostHeader.vue";
@@ -54,10 +55,17 @@ export default {
 
     onMounted(getPostInfo());
 
+    const store = useStore();
+    const isFollowing = computed(() => {
+      return store.getters.isFollowingAuthor(author);
+    });
+
     return {
       post,
       isLoading,
       author,
+      store,
+      isFollowing,
     };
   },
 };
