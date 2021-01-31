@@ -57,3 +57,31 @@ export function listfollowingUser(id, type = "users") {
     }
   })
 }
+
+/**
+ * follow author
+ * @param {string} id
+ */
+export function followingUser(id) {
+  return request({
+    method: "put",
+    url: `/users/following/${id}`,
+    params: {
+      id
+    }
+  })
+}
+
+/**
+ * unfollow author
+ * @param {string} id
+ */
+export function unfollowingUser(id) {
+  return request({
+    method: "delete",
+    url: `/users/following/${id}`,
+    params: {
+      id
+    }
+  })
+}

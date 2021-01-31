@@ -24,6 +24,7 @@
 
 <script>
 import { toRefs } from "vue";
+import { useStore } from "vuex";
 export default {
   props: {
     author: {
@@ -43,11 +44,12 @@ export default {
     },
   },
   setup(props) {
+    const store = useStore();
     const followingUser = () => {
-      console.log("关注该作者");
+      store.dispatch("followingUser", props.author._id);
     };
     const unfollowingUser = () => {
-      console.log("取消关注该作者");
+      store.dispatch("unfollowingUser", props.author._id);
     };
     return {
       ...toRefs(props),
