@@ -1,11 +1,12 @@
 import { createPost, updatePost } from "network/post";
 import marked from "marked";
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default function usePost(state) {
 
   // 判断是否是新文章
   const route = useRoute()
+  const router = useRouter()
   // /editor vs /writer/:pid
   const isNewPost = route.params.pid ? false : true
 
@@ -21,6 +22,7 @@ export default function usePost(state) {
     // 如果是已经发布过的就更新
     const res = await createPost(post)
     console.log(res);
+    router.replace(`/p/${res._id}`);
   }
 
   const update = async () => {
@@ -31,6 +33,11 @@ export default function usePost(state) {
       status: state.status,
     };
     const res = await updatePost(post, pid)
+
+    // 更新成功跳转路由
+    router.replace(`/p/${pid}`);
+    
+
     console.log('update', res);
   }
 
