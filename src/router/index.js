@@ -8,6 +8,7 @@ const Post = () => import('@/views/Post/Post.vue')
 const User = () => import('@/views/User/User.vue')
 const Login = () => import('@/views/Login/Login.vue')
 const Editor = () => import('@/views/Editor/Editor.vue')
+const Writer = () => import('@/views/Writer/Writer.vue')
 
 const routes = [
   {
@@ -59,6 +60,11 @@ const routes = [
     path: '/editor',
     name: 'Editor',
     component: Editor
+  },
+  {
+    path: '/writer/:pid',
+    name: 'Writer',
+    component: Writer
   },
   {
     path: '/p/:pid',
