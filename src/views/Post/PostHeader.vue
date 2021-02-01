@@ -83,10 +83,7 @@ export default {
   padding: 6px;
   text-align: left;
   list-style: none;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
   background-color: #fff;
-  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 
 .overlay {
