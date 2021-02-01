@@ -6,7 +6,8 @@
     </div>
     <div class="right">
       <button class="item" @click="preview">预览</button>
-      <button class="item" @click="publish">发布</button>
+      <button class="item" v-if="isNewPost" @click="publish">发布</button>
+      <button class="item" v-else @click="update">更新</button>
     </div>
   </header>
 
@@ -79,7 +80,7 @@ export default {
       }
     );
 
-    const { publish, preview } = usePost(state);
+    const { publish, preview, isNewPost, update } = usePost(state);
 
     const goBack = () => {
       // 如果在预览状态下点击，则切换为编辑状态
@@ -111,6 +112,8 @@ export default {
       publish,
       goBack,
       insert,
+      isNewPost,
+      update,
     };
   },
 };

@@ -41,3 +41,15 @@ export function getPostDetail(id) {
   })
 }
 
+/**
+ * Update Post
+ * @param {number} id
+ */
+export function updatePost(post, id) {
+  return request({
+    method: "patch",
+    url: `/posts/${id}`,
+    data: post,
+  })
+}
+
