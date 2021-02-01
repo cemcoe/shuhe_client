@@ -85,3 +85,19 @@ export function unfollowingUser(id) {
     }
   })
 }
+
+/**
+ * request user public post list
+ * @param {string} id
+ * @param {string} status
+ */
+// 获取某人文章列表，默认为公开文章
+export function getUserPosts(id, status = 'public') {
+  return request({
+    method: "get",
+    url: `/users/${id}/posts`,
+    params: {
+      status,
+    }
+  })
+}
