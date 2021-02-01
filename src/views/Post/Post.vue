@@ -1,5 +1,5 @@
 <template>
-  <post-header></post-header>
+  <post-header :isAuthor="isAuthor"></post-header>
   <div class="loading" v-if="isLoading">加载中。。。</div>
   <div v-else>
     <h2>{{ post.title }}</h2>
@@ -60,12 +60,17 @@ export default {
       return store.getters.isFollowingAuthor(author);
     });
 
+    const isAuthor = computed(() => {
+      return store.getters.isAuthor(author)
+    })
+
     return {
       post,
       isLoading,
       author,
       store,
       isFollowing,
+      isAuthor,
     };
   },
 };

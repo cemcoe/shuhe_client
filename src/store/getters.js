@@ -11,4 +11,12 @@ export default {
     }
     return false
   },
+  // 登录用户是否是作者，如果是就添加编辑按钮
+  isAuthor: state => (author) => {
+    const { user } = state
+    if (user._id === author._id) {
+      return true
+    }
+    return false
+  }
 }

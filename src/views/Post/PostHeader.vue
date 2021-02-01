@@ -10,8 +10,21 @@
     <template #right>
       <cem-icon name="more" />
       <div class="menu" v-show="isShowMenu">
-        <ul>
+        <!-- 文章所有者 -->
+        <ul v-if="isAuthor">
+          <li>收藏</li>
+          <li>分享</li>
+          <li>编辑</li>
+          <li>收入连载</li>
           <li>删除</li>
+        </ul>
+        <!-- 看别人的文章 -->
+        <ul v-else>
+          <li>收藏</li>
+          <li>分享</li>
+          <li>收入专题</li>
+          <li>显示模式</li>
+          <li>举报</li>
         </ul>
       </div>
     </template>
@@ -37,6 +50,11 @@ const useMenu = () => {
 
 export default {
   name: "PostHeader",
+  props: {
+    isAuthor: {
+      type: Boolean,
+    },
+  },
   setup() {
     const { isShowMenu, changeMenuStatus } = useMenu();
 
