@@ -14,7 +14,7 @@
         <ul v-if="isAuthor">
           <li>收藏</li>
           <li>分享</li>
-          <li>编辑</li>
+          <li @click="edit">编辑</li>
           <li>收入连载</li>
           <li>删除</li>
         </ul>
@@ -34,6 +34,7 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const useMenu = () => {
   const isShowMenu = ref(false);
@@ -58,9 +59,17 @@ export default {
   setup() {
     const { isShowMenu, changeMenuStatus } = useMenu();
 
+    const router = useRouter();
+    const route = useRoute();
+    const edit = () => {
+      console.log("跳转到编辑文章界面");
+      router.replace("/writer/" + route.params.pid);
+    };
+
     return {
       isShowMenu,
       changeMenuStatus,
+      edit,
     };
   },
 };
