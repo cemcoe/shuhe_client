@@ -53,3 +53,18 @@ export function updatePost(post, id) {
   })
 }
 
+/**
+ * Update Post
+ * @param {number} pid
+ */
+export function gotoTrash(pid) {
+  const post = {
+    "status": -2
+  }
+  return request({
+    method: "patch",
+    url: `/posts/${pid}`,
+    data: post,
+  })
+}
+

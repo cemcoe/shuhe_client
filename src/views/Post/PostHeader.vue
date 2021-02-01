@@ -16,7 +16,7 @@
           <li>分享</li>
           <li @click="edit">编辑</li>
           <li>收入连载</li>
-          <li>删除</li>
+          <li @click="del">删除</li>
         </ul>
         <!-- 看别人的文章 -->
         <ul v-else>
@@ -35,6 +35,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { gotoTrash } from "network/post.js";
 
 const useMenu = () => {
   const isShowMenu = ref(false);
@@ -66,10 +67,20 @@ export default {
       router.replace("/writer/" + route.params.pid);
     };
 
+    const del = async () => {
+      const res = await gotoTrash(route.params.pid);
+      console.log(res);
+      if (res.status === 200) {
+        console.log("已将文章移到垃圾箱");
+        router.replace("/");
+      }
+    };
+
     return {
       isShowMenu,
       changeMenuStatus,
       edit,
+      del,
     };
   },
 };
