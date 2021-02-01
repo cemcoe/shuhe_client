@@ -7,7 +7,7 @@ export default function usePost(state) {
   // 判断是否是新文章
   const route = useRoute()
   // /editor vs /writer/:pid
-  const isNewPost = route.params ? false : true
+  const isNewPost = route.params.pid ? false : true
 
   const publish = async () => {
 
