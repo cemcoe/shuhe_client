@@ -1,12 +1,7 @@
 <template>
   <div class="loading" v-if="isLoading">加载中。。。</div>
   <div v-else>
-    <textarea
-      v-model="content"
-      name="post"
-      id="post"
-      placeholder="请输入正文"
-    ></textarea>
+    <cem-editor :post="post"></cem-editor>
   </div>
 </template>
 
@@ -14,7 +9,11 @@
 import { useRoute } from "vue-router";
 import { ref, reactive, onMounted, toRefs } from "vue";
 import { getPostDetail } from "network/post.js";
+import CemEditor from "components/content/Editor/Editor.vue";
 export default {
+  components: {
+    CemEditor,
+  },
   setup() {
     const route = useRoute();
     const { pid } = route.params;
@@ -39,6 +38,7 @@ export default {
 
     return {
       isLoading,
+      post,
       ...toRefs(post),
     };
   },
