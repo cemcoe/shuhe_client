@@ -74,8 +74,9 @@ export default {
     const store = useStore();
     const followingUser = () =>
       store.dispatch("followingUser", props.userInfo._id);
+
     const unfollowingUser = () => {
-      console.log("unfollowingUser");
+      store.dispatch("unfollowingUser", props.userInfo._id);
     };
 
     const isFollowingAuthor = computed(() =>
