@@ -6,6 +6,7 @@ const Message = () => import('@/views/Message/Message.vue')
 const Profile = () => import('@/views/Profile/Profile.vue')
 const Post = () => import('@/views/Post/Post.vue')
 const User = () => import('@/views/User/User.vue')
+const UserFollowing = () => import('@/views/User/UserFollowing.vue')
 const Login = () => import('@/views/Login/Login.vue')
 const Editor = () => import('@/views/Editor/Editor.vue')
 const Writer = () => import('@/views/Writer/Writer.vue')
@@ -75,6 +76,11 @@ const routes = [
     path: '/u/:uid',
     name: 'User',
     component: User
+  },
+  {
+    path: '/u/:uid/following',
+    name: 'UserFollowing',
+    component: UserFollowing
   },
   {
     path: '/',
