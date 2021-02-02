@@ -1,7 +1,7 @@
 <template>
   <div v-if="isLoading" class="loading">加载中。。。</div>
   <div v-else>
-    <p>{{ user.name }}</p>
+    <user-info :userInfo="user"></user-info>
     <post-list :postList="postList"></post-list>
   </div>
 </template>
@@ -11,9 +11,11 @@ import { onMounted, reactive, toRefs, ref } from "vue";
 import { useRoute } from "vue-router";
 import { getUserInfo, getUserPosts } from "network/user.js";
 import PostList from "components/content/PostList/PostList.vue";
+import UserInfo from './UserInfo.vue'
 
 export default {
   components: {
+    UserInfo,
     PostList,
   },
   setup() {
@@ -31,6 +33,8 @@ export default {
     onMounted(async () => {
       const res = await getUserInfo(uid);
       const user = res.data.user;
+      user.avatar = 'https://jian.cemcoe.com/jianshu_api' + user.avatar 
+      console.log(user)
 
       const result = await getUserPosts(uid);
       state.postList = result.data;
