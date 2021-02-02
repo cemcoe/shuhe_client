@@ -50,7 +50,7 @@
 
           |
 
-          <router-link :to="'/u/' + userInfo._id + '/followers'">
+          <router-link :to="'/u/' + userInfo._id + '/follower'">
             <span class="follower">粉丝{{ userInfo.follower_count }}</span>
           </router-link>
         </div>

@@ -14,12 +14,11 @@
             <span class="user-name">{{ user.name }}</span>
           </router-link>
           <div class="follow">
-            <router-link :to="'/users/' + user._id + '/following'">
-              <span class="follower">关注 0</span>
+            <router-link :to="'/u/' + user._id + '/following'">
+              <span class="follower">关注 {{user.following_count}}</span>
             </router-link>
-
-            <router-link :to="'/users/' + user._id + '/followers'">
-              <span class="follower">粉丝0</span>
+            <router-link :to="'/u/' + user._id + '/follower'">
+              <span class="follower">粉丝{{user.follower_count}}</span>
             </router-link>
 
             <!-- <span class="fans">粉丝 233</span> -->
