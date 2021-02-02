@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const Home = () => import('@/views/Home/Home.vue')
 const Following = () => import('@/views/Following/Following.vue')
 const Island = () => import('@/views/Island/Island.vue')
+const IslandDetail = () => import('@/views/Island/IslandDetail.vue')
 const Message = () => import('@/views/Message/Message.vue')
 const Profile = () => import('@/views/Profile/Profile.vue')
 const Post = () => import('@/views/Post/Post.vue')
@@ -36,6 +37,11 @@ const routes = [
     meta: {
       showFooter: true
     },
+  },
+  {
+    path: '/island/:islandId',
+    name: 'IslandDetail',
+    component: IslandDetail,
   },
   {
     path: '/message',
