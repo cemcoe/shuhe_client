@@ -59,6 +59,20 @@ export function listfollowingUser(id, type = "users") {
 }
 
 /**
+ * listfollower
+ * @param {string} id
+ */
+export function listfollower(id) {
+  return request({
+    method: "get",
+    url: `/users/${id}/followers`,
+    params: {
+      id
+    }
+  })
+}
+
+/**
  * follow author
  * @param {string} id
  */
