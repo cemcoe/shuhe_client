@@ -1,10 +1,7 @@
 <template>
   <div v-if="isLoading" class="isloading">加载中。。。</div>
   <div v-else>
-    <p>
-      获取用户关注列表
-      {{ userList }}
-    </p>
+    <user-list :userList="userList"></user-list>
   </div>
 </template>
 
@@ -12,8 +9,12 @@
 import { onMounted, reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
 import { listfollowingUser } from "network/user.js";
+import UserList from "./UserList.vue";
 
 export default {
+  components: {
+    UserList,
+  },
   setup() {
     const route = useRoute();
     const uid = route.params.uid;
