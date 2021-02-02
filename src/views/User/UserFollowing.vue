@@ -1,4 +1,11 @@
 <template>
+  <header>
+    <cem-nav-bar title="关注" @click-left="$router.back()">
+      <template #left>
+        <cem-icon name="back" />
+      </template>
+    </cem-nav-bar>
+  </header>
   <div v-if="isLoading" class="isloading">加载中。。。</div>
   <div v-else>
     <user-list :userList="userList"></user-list>

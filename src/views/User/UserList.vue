@@ -1,12 +1,6 @@
 <template>
   <div>
-    <header>
-      <cem-nav-bar title="关注" @click-left="$router.back()">
-        <template #left>
-          <cem-icon name="back" />
-        </template>
-      </cem-nav-bar>
-    </header>
+    
 
     <div class="follow-item" v-for="user in userList" :key="user._id">
       <router-link :to="'/u/' + user._id"> </router-link>
