@@ -43,6 +43,7 @@ import { reactive, toRefs, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import usePost from "./usePost.js";
+import useInsertText from "./useInsertText.js";
 export default {
   name: "CemEditor",
   props: {
@@ -94,16 +95,8 @@ export default {
 
     const insert = (value) => {
       console.log("insert");
-      const content = document.querySelector("#post");
-      // 找到插入位置
-      const startPos = content.selectionStart;
-      const endPos = content.selectionEnd;
-      console.log([startPos, endPos]);
-      // 处理字符串
-      const startStr = state.content.substring(0, startPos);
-      const endStr = state.content.substring(endPos, state.content.length);
-      state.content = startStr + value + endStr;
-      console.log(startStr, value, endStr);
+      const dom = document.querySelector("#post");
+      useInsertText(dom, value);
     };
 
     return {
