@@ -103,7 +103,12 @@ export default {
 
     // 路由拦截
     onBeforeRouteLeave(() => {
-      content.emit("routeLeave");
+      const answer = window.confirm("嗨伙计，你确定不再需要本页的数据了!");
+      if (answer) {
+        content.emit("routeLeave");
+      } else {
+        return false;
+      }
     });
 
     return {
