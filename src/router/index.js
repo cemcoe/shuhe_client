@@ -27,7 +27,8 @@ const routes = [
     name: 'Following',
     component: Following,
     meta: {
-      showFooter: true
+      showFooter: true,
+      requireAuth: true,
     },
   },
   {
@@ -35,20 +36,25 @@ const routes = [
     name: 'Island',
     component: Island,
     meta: {
-      showFooter: true
+      showFooter: true,
+      requireAuth: true,
     },
   },
   {
     path: '/island/:islandId',
     name: 'IslandDetail',
     component: IslandDetail,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/message',
     name: 'Message',
     component: Message,
     meta: {
-      showFooter: true
+      showFooter: true,
+      requireAuth: true,
     },
   },
   {
@@ -62,37 +68,55 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/editor',
     name: 'Editor',
-    component: Editor
+    component: Editor,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/writer/:pid',
     name: 'Writer',
-    component: Writer
+    component: Writer,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/p/:pid',
     name: 'Post',
-    component: Post
+    component: Post,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/u/:uid',
     name: 'User',
-    component: User
+    component: User,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/u/:uid/following',
     name: 'UserFollowing',
-    component: UserFollowing
+    component: UserFollowing,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/u/:uid/follower',
     name: 'UserFollower',
-    component: UserFollower
+    component: UserFollower,
+    meta: {
+      requireAuth: true,
+    }
   },
   {
     path: '/',

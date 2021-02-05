@@ -10,8 +10,8 @@ export default {
     localStorage.setItem('user', JSON.stringify(user))
   },
   signout(state) {
-    state.user = {};
-    state.token = '';
+    state.user = null;
+    state.token = null;
     localStorage.clear();
   },
   // 设置用户关注列表
