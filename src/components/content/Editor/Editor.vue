@@ -57,7 +57,9 @@ export default {
       },
     },
   },
-  setup(props) {
+  emits: ["routeLeave"], // this line
+  // https://stackoverflow.com/questions/64220737/vue-3-emit-warning-extraneous-non-emits-event-listeners
+  setup(props, content) {
     const state = reactive({
       title: "",
       content: "",
@@ -101,12 +103,7 @@ export default {
 
     // 路由拦截
     onBeforeRouteLeave(() => {
-      const answer = window.confirm("嗨伙计，你确定不再需要本页的数据了!");
-      if (answer) {
-        console.log("TODO: 将文章保存为草稿");
-      } else {
-        return false;
-      }
+      content.emit("routeLeave");
     });
 
     return {
