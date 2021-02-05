@@ -12,18 +12,12 @@
       <div class="menu" v-show="isShowMenu">
         <!-- 文章所有者 -->
         <ul v-if="isAuthor">
-          <li>收藏</li>
-          <li>分享</li>
           <li @click="edit">编辑</li>
           <li>收入连载</li>
           <li @click="del">删除</li>
         </ul>
         <!-- 看别人的文章 -->
         <ul v-else>
-          <li>收藏</li>
-          <li>分享</li>
-          <li>收入专题</li>
-          <li>显示模式</li>
           <li>举报</li>
         </ul>
       </div>
