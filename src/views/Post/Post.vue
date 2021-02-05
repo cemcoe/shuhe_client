@@ -6,6 +6,7 @@
     <author-info :author="author" :isFollowing="isFollowing"></author-info>
     <div class="content" v-html="post.content"></div>
     <post-comment :postComments="postComments"></post-comment>
+    <post-tab-bar :postId="post.id" @commentSuccess="commentSuccess"></post-tab-bar>
   </div>
 </template>
 
@@ -19,12 +20,14 @@ import marked from "marked";
 import PostHeader from "./PostHeader.vue";
 import AuthorInfo from "./AuthorInfo.vue";
 import PostComment from "./PostComment.vue";
+import PostTabBar from './PostTabBar.vue'
 
 export default {
   components: {
     PostHeader,
     AuthorInfo,
     PostComment,
+    PostTabBar,
   },
   setup() {
     const route = useRoute();
@@ -32,6 +35,7 @@ export default {
     const isLoading = ref(true);
 
     const post = reactive({
+      id: "",
       title: "",
       content: "",
       postComments: [],
@@ -53,6 +57,7 @@ export default {
         "https://jian.cemcoe.com/jianshu_api" + data.author.avatar;
       author._id = data.author._id;
 
+      post.id = pid
       post.title = data.title;
       post.content = marked(data.content);
       isLoading.value = false;
@@ -78,6 +83,10 @@ export default {
       return store.getters.isAuthor(author);
     });
 
+    const commentSuccess = () => {
+      console.log('TODO: 更新评论列表')
+    }
+
     return {
       post,
       isLoading,
@@ -85,7 +94,8 @@ export default {
       store,
       isFollowing,
       isAuthor,
-      ...toRefs(post)
+      ...toRefs(post),
+      commentSuccess
     };
   },
 };
