@@ -40,7 +40,7 @@
 
 <script>
 import { reactive, toRefs, watch } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, onBeforeRouteLeave } from "vue-router";
 
 import usePost from "./usePost.js";
 import useInsertText from "./useInsertText.js";
@@ -98,6 +98,16 @@ export default {
       const dom = document.querySelector("#post");
       useInsertText(dom, value);
     };
+
+    // 路由拦截
+    onBeforeRouteLeave(() => {
+      const answer = window.confirm("嗨伙计，你确定不再需要本页的数据了!");
+      if (answer) {
+        console.log("TODO: 将文章保存为草稿");
+      } else {
+        return false;
+      }
+    });
 
     return {
       ...toRefs(state),
