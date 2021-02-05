@@ -16,15 +16,17 @@ export function request(config) {
   instance.interceptors.request.use(config => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}` || ''
     // 每个请求都重新设置有点耗费资源，一般token发生改变会是换账号登录，或token过期，可能会有更好的方案。
+    console.log('interceptors.request', config)
     return config
   }, error => {
     console.log(error)
   })
   // 3. 响应拦截
   instance.interceptors.response.use(res => {
+    console.log('interceptors.response', res)
     return res.data
   }, error => {
-    console.log(error.response)
+    console.log('interceptors.response', error)
     return Promise.reject(error.response.data);
   })
   // 4. 发送真正的网络请求
