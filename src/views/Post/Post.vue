@@ -1,13 +1,13 @@
 <template>
   <post-header :isAuthor="isAuthor"></post-header>
-  <div class="loading" v-if="isLoading">加载中。。。</div>
-  <div v-else>
-    <h2>{{ post.title }}</h2>
-    <author-info :author="author" :isFollowing="isFollowing"></author-info>
-    <div class="content" v-html="post.content"></div>
-    <post-comment :postComments="postComments"></post-comment>
-    <post-tab-bar :postId="post.id" @commentSuccess="commentSuccess"></post-tab-bar>
-  </div>
+  <h2>{{ post.title }}</h2>
+  <author-info :author="author" :isFollowing="isFollowing"></author-info>
+  <div class="content" v-html="post.content"></div>
+  <post-comment :postComments="postComments"></post-comment>
+  <post-tab-bar
+    :postId="post.id"
+    @commentSuccess="commentSuccess"
+  ></post-tab-bar>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ import marked from "marked";
 import PostHeader from "./PostHeader.vue";
 import AuthorInfo from "./AuthorInfo.vue";
 import PostComment from "./PostComment.vue";
-import PostTabBar from './PostTabBar.vue'
+import PostTabBar from "./PostTabBar.vue";
 
 export default {
   components: {
@@ -32,7 +32,6 @@ export default {
   setup() {
     const route = useRoute();
     const pid = route.params.pid;
-    const isLoading = ref(true);
 
     const post = reactive({
       id: "",
@@ -44,7 +43,7 @@ export default {
     let author = reactive({
       name: "",
       avatar: "",
-      _id: "",
+      _id: null,
     });
 
     const getPostInfo = async () => {
@@ -57,17 +56,16 @@ export default {
         "https://jian.cemcoe.com/jianshu_api" + data.author.avatar;
       author._id = data.author._id;
 
-      post.id = pid
+      post.id = pid;
       post.title = data.title;
       post.content = marked(data.content);
-      isLoading.value = false;
     };
 
     const getComments = async () => {
       const res = await getPostComments(pid);
       console.log(res.data.comments);
       post.postComments = res.data.comments;
-      console.log(post.postComments, '....')
+      console.log(post.postComments, "....");
     };
 
     onMounted(() => {
@@ -84,18 +82,17 @@ export default {
     });
 
     const commentSuccess = () => {
-      console.log('TODO: 更新评论列表')
-    }
+      console.log("TODO: 更新评论列表");
+    };
 
     return {
       post,
-      isLoading,
       author,
       store,
       isFollowing,
       isAuthor,
       ...toRefs(post),
-      commentSuccess
+      commentSuccess,
     };
   },
 };
