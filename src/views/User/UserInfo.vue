@@ -1,11 +1,4 @@
 <template>
-  <header>
-    <cem-nav-bar :title="userInfo.name" @click-left="$router.back()">
-      <template #left>
-        <cem-icon name="back" />
-      </template>
-    </cem-nav-bar>
-  </header>
   <div class="container">
     <div class="background"></div>
     <div class="user">
