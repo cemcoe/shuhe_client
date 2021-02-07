@@ -1,15 +1,12 @@
 <template>
-  <header>
-    <div class="left">
-      <button class="item" @click="goBack">返回</button>
-      <span class="item">{{ wordcount }}字</span>
-    </div>
-    <div class="right">
-      <button class="item" @click="preview">预览</button>
-      <button class="item" v-if="isNewPost" @click="publish">发布</button>
-      <button class="item" v-else @click="update">更新</button>
-    </div>
-  </header>
+  <editor-header
+    :isNewPost="isNewPost"
+    @goBack="goBack"
+    @preview="preview"
+    @publish="publish"
+    @update="update"
+    :wordcount="wordcount"
+  ></editor-header>
 
   <div class="preview" v-show="isPreview">
     <div v-html="previewContent"></div>
@@ -44,6 +41,7 @@ import { useRouter, onBeforeRouteLeave } from "vue-router";
 
 import usePost from "./usePost.js";
 import useInsertText from "./useInsertText.js";
+import EditorHeader from "./EditorHeader.vue";
 export default {
   name: "CemEditor",
   props: {
@@ -56,6 +54,9 @@ export default {
         type: String,
       },
     },
+  },
+  components: {
+    EditorHeader,
   },
   emits: ["routeLeave"], // this line
   // https://stackoverflow.com/questions/64220737/vue-3-emit-warning-extraneous-non-emits-event-listeners
@@ -154,21 +155,9 @@ button {
   -webkit-appearance: none;
 }
 
-header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  height: 44px;
-  margin-bottom: 44px;
-}
 
-header .item {
-  padding: 6px;
-}
+
+
 .content {
   margin-top: 44px;
   margin-bottom: 49px;
