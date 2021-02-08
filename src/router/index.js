@@ -19,7 +19,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      showFooter: true
+      showFooter: true,
+      title: "首页 - 书核"
     },
   },
   {
@@ -29,6 +30,7 @@ const routes = [
     meta: {
       showFooter: true,
       requireAuth: true,
+      title: "关注页 - 书核"
     },
   },
   {
@@ -38,6 +40,7 @@ const routes = [
     meta: {
       showFooter: true,
       requireAuth: true,
+      title: "小岛页 - 书核"
     },
   },
   {
@@ -46,6 +49,7 @@ const routes = [
     component: IslandDetail,
     meta: {
       requireAuth: true,
+      title: "小岛详情页 - 书核"
     }
   },
   {
@@ -55,6 +59,7 @@ const routes = [
     meta: {
       showFooter: true,
       requireAuth: true,
+      title: "消息页 - 书核"
     },
   },
   {
@@ -62,13 +67,15 @@ const routes = [
     name: 'Profile',
     component: Profile,
     meta: {
-      showFooter: true
+      showFooter: true,
+      title: "个人页 - 书核"
     },
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    title: "登录 - 书核"
   },
   {
     path: '/editor',
@@ -76,6 +83,7 @@ const routes = [
     component: Editor,
     meta: {
       requireAuth: true,
+      title: "编辑 - 书核"
     }
   },
   {
@@ -92,6 +100,7 @@ const routes = [
     component: Post,
     meta: {
       requireAuth: true,
+      title: "文章详情页 - 书核",
     }
   },
   {
@@ -100,6 +109,7 @@ const routes = [
     component: User,
     meta: {
       requireAuth: true,
+      title: "用户详情页 - 书核"
     }
   },
   {
@@ -128,5 +138,12 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+const defaultTitle = '书核'
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title ? to.meta.title : defaultTitle
+  next()
+})
+
 
 export default router
