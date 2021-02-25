@@ -23,15 +23,7 @@
       ></textarea>
     </div>
 
-    <div class="pannel">
-      <div class="symbols">
-        <button @click="insert('![]()')">图片</button>
-        <button @click="insert('[]()')">链接</button>
-        <button @click="insert('# ')">#</button>
-        <button @click="insert('- ')">-</button>
-      </div>
-      <div class="setting">设置</div>
-    </div>
+    <editor-pannel @insert="insert"></editor-pannel>
   </div>
 </template>
 
@@ -42,6 +34,7 @@ import { useRouter, onBeforeRouteLeave } from "vue-router";
 import usePost from "./usePost.js";
 import useInsertText from "./useInsertText.js";
 import EditorHeader from "./EditorHeader.vue";
+import EditorPannel from "./EditorPannel.vue"
 export default {
   name: "CemEditor",
   props: {
@@ -57,6 +50,7 @@ export default {
   },
   components: {
     EditorHeader,
+    EditorPannel,
   },
   emits: ["routeLeave"], // this line
   // https://stackoverflow.com/questions/64220737/vue-3-emit-warning-extraneous-non-emits-event-listeners
@@ -97,7 +91,7 @@ export default {
     };
 
     const insert = (value) => {
-      console.log("insert");
+      console.log("insert", value);
       const dom = document.querySelector("#post");
       useInsertText(dom, value);
     };
@@ -131,33 +125,6 @@ export default {
   padding: 0;
 }
 
-button {
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-
-  background: transparent;
-
-  /* inherit font & color from ancestor */
-  color: inherit;
-  font: inherit;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
-}
-
-
-
-
 .content {
   margin-top: 44px;
   margin-bottom: 49px;
@@ -185,30 +152,6 @@ button {
   /* 剪掉头和尾以及title高度 */
   padding: 8px;
   box-sizing: border-box;
-}
-
-.pannel {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 100;
-  display: flex;
-  background-color: rgb(231, 221, 221);
-  height: 49px;
-  line-height: 49px;
-  overflow: hidden;
-}
-
-.pannel .symbols button {
-  margin: 8px;
-}
-
-.pannel .setting {
-  position: fixed;
-  right: 0px;
-  bottom: 0px;
-  box-shadow: -4px 0px 4px rgb(148, 143, 143);
 }
 
 .preview {
