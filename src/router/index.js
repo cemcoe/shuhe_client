@@ -7,6 +7,7 @@ const Message = () => import('@/views/Message/Message.vue')
 const Profile = () => import('@/views/Profile/Profile.vue')
 const Post = () => import('@/views/Post/Post.vue')
 const User = () => import('@/views/User/User.vue')
+const Search = () => import('@/views/Search/Search.vue')
 const UserFollowing = () => import('@/views/User/UserFollowing.vue')
 const UserFollower = () => import('@/views/User/UserFollower.vue')
 const Login = () => import('@/views/Login/Login.vue')
@@ -41,6 +42,14 @@ const routes = [
       showFooter: true,
       requireAuth: true,
       title: "小岛页 - 书核"
+    },
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    meta: {
+      title: "搜索页 - 书核"
     },
   },
   {

@@ -1,5 +1,7 @@
 <template>
-  <cem-nav-bar title="书核"> </cem-nav-bar>
+  <div class="nav">
+    <div @click="$router.push('/search')">多喝热水，早睡早起</div>
+  </div>
 
   <div v-if="isLoading" class="loading">加载中。。。</div>
 
@@ -44,6 +46,18 @@ export default {
 </script>
 
 <style scoped>
+.nav div {
+  margin: 0 auto;
+  width: 90%;
+  background-color: rgb(247, 242, 242);
+  padding: 6px;
+  text-align: center;
+  border-radius: 50px;
+  color: rgb(161, 160, 160);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
 .write {
   position: fixed;
   width: 40px;
