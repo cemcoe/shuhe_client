@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "cem-ui": "0.0.5",
+    "cem-ui": "^0.0.6",
     "core-js": "^3.6.5",
     "marked": "^1.2.7",
     "register-service-worker": "^1.7.1",

@@ -2,11 +2,11 @@
   <tab-bar>
     <tab-bar-item path="/home">
       <template v-slot:item-icon>
-        <cem-icon name="home"></cem-icon>
+        <cem-icon :theme="theme" name="home"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <cem-icon name="home"></cem-icon>
+        <cem-icon :theme="theme" name="home"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -16,11 +16,11 @@
 
     <tab-bar-item path="/following">
       <template v-slot:item-icon>
-        <cem-icon name="following"></cem-icon>
+        <cem-icon :theme="theme" name="following"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <cem-icon name="following"></cem-icon>
+        <cem-icon :theme="theme" name="following"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -30,11 +30,11 @@
 
     <tab-bar-item path="/island">
       <template v-slot:item-icon>
-        <cem-icon name="island"></cem-icon>
+        <cem-icon :theme="theme" name="island"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <cem-icon name="island"></cem-icon>
+        <cem-icon :theme="theme" name="island"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -44,11 +44,11 @@
 
     <tab-bar-item path="/message">
       <template v-slot:item-icon>
-        <cem-icon name="message"></cem-icon>
+        <cem-icon :theme="theme" name="message"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <cem-icon name="message"></cem-icon>
+        <cem-icon :theme="theme" name="message"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -58,11 +58,11 @@
 
     <tab-bar-item path="/profile">
       <template v-slot:item-icon>
-        <cem-icon name="profile"></cem-icon>
+        <cem-icon :theme="theme" name="profile"></cem-icon>
       </template>
 
       <template v-slot:item-icon-active>
-        <cem-icon name="profile"></cem-icon>
+        <cem-icon :theme="theme" name="profile"></cem-icon>
       </template>
 
       <template v-slot:item-text>
@@ -78,6 +78,12 @@ import TabBar from "components/common/TabBar/TabBar";
 
 export default {
   name: "MainTabBar",
+  props: {
+    theme: {
+      type: String,
+      default: "",
+    },
+  },
   components: {
     TabBar,
     TabBarItem,

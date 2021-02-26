@@ -8,6 +8,7 @@
   <main-tab-bar
     v-if="$route.meta.showFooter"
     class="main-tab-bar"
+    theme="pink"
   ></main-tab-bar>
 </template>
 
