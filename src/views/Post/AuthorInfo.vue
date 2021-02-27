@@ -10,14 +10,10 @@
         <router-link :to="'/u/' + author._id">{{ author.name }}</router-link>
       </div>
     </div>
-    <div class="follow">
-      <cem-button type="primary" v-if="!isFollowing" @click="followingUser()"
-        >+ 关注</cem-button
-      >
-
-      <cem-button type="primary" v-else @click="unfollowingUser()"
-        >取消关注</cem-button
-      >
+    <div class="follow" v-show="author.avatar">
+      <cem-button type="primary" @click="followBtnClick">{{
+        isFollowing ? "取消关注" : "关注"
+      }}</cem-button>
     </div>
   </div>
 </template>
@@ -45,16 +41,23 @@ export default {
   },
   setup(props) {
     const store = useStore();
+
     const followingUser = () => {
       store.dispatch("followingUser", props.author._id);
     };
     const unfollowingUser = () => {
       store.dispatch("unfollowingUser", props.author._id);
     };
+
+    const followBtnClick = () => {
+      props.isFollowing ? unfollowingUser() : followingUser();
+    };
+
     return {
       ...toRefs(props),
       followingUser,
       unfollowingUser,
+      followBtnClick,
     };
   },
 };
