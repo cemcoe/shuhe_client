@@ -94,7 +94,7 @@ export default {
   padding: 16px 8px;
   box-sizing: content-box;
   margin-bottom: 12px;
-  background-color: #fff;
+  box-shadow: 4px 4px 6px rgb(228, 225, 225);
 }
 .post-item a {
   text-decoration: none;

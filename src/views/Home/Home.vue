@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .nav div {
-  margin: 0 auto;
+  margin: 6px auto;
   width: 90%;
   background-color: rgb(247, 242, 242);
   padding: 6px;
