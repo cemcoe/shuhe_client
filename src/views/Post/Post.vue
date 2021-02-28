@@ -2,6 +2,7 @@
   <post-header :isAuthor="isAuthor"></post-header>
   <h2>{{ post.title }}</h2>
   <author-info :author="author" :isFollowing="isFollowing"></author-info>
+  <post-info :postInfo="post"></post-info>
   <div class="content" v-html="post.content"></div>
   <post-comment :postComments="postComments"></post-comment>
   <post-tab-bar
@@ -19,6 +20,7 @@ import { getPostComments } from "network/comment.js";
 import marked from "marked";
 import PostHeader from "./PostHeader.vue";
 import AuthorInfo from "./AuthorInfo.vue";
+import PostInfo from "./PostInfo.vue";
 import PostComment from "./PostComment.vue";
 import PostTabBar from "./PostTabBar.vue";
 
@@ -26,6 +28,7 @@ export default {
   components: {
     PostHeader,
     AuthorInfo,
+    PostInfo,
     PostComment,
     PostTabBar,
   },
@@ -38,6 +41,9 @@ export default {
       title: "",
       content: "",
       postComments: [],
+      wordcount: '-',
+      viewcount: '-',
+      createdAt: '-',
     });
 
     let author = reactive({
@@ -59,6 +65,10 @@ export default {
       post.id = pid;
       post.title = data.title;
       post.content = marked(data.content);
+      post.wordcount = data.wordcount;
+      post.viewcount = data.viewcount;
+      // TODO: format date
+      post.createdAt = data.createdAt;
     };
 
     const getComments = async () => {
