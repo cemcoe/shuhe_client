@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 
 export default function useHotKey(key) {
-  const hotKeys = reactive(["你", "我", "他", "震惊"]);
+  const hotKeys = reactive(["你", "我", "他", "震惊", "cemcoe"]);
 
   const hotKeyClick = (hotkey) => {
     console.log("ss", hotkey);

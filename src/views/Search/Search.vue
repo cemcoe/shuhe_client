@@ -11,7 +11,7 @@
       />
     </div>
     <div class="right">
-      <button @click="readySearch">
+      <button :disabled="isLoading" @click="readySearch">
         <cem-icon name="search"></cem-icon>
       </button>
     </div>
@@ -26,9 +26,11 @@
     </ul>
   </div>
 
-   <div class="key">
-      你要搜索的关键词<span class="search-key"> {{ key }}</span>，为你找到{{ searchResult.length }}条数据
-    </div>
+  <div class="key">
+    你要搜索的关键词<span class="search-key"> {{ key }}</span
+    >，
+    {{ isLoading ? "正在为您检索。。。" : `为您找到${searchResult.length}条数据` }}
+  </div>
 
   <div class="search-result">
     <!-- 搜索结果 {{ searchResult }} -->
@@ -50,15 +52,18 @@ export default {
   setup() {
     const key = ref("");
     let searchInputBox = ref(null);
+    let isLoading = ref(false);
 
     const state = reactive({
       searchResult: [],
     });
 
     const readySearch = async () => {
+      isLoading.value = true;
       console.log("用户搜索的关键词：", key.value);
       const res = await search(key.value);
       state.searchResult = res.data.post;
+      isLoading.value = false;
     };
 
     onMounted(() => {
@@ -76,6 +81,7 @@ export default {
       hotKeys,
       hotKeyClick,
       ...toRefs(state),
+      isLoading,
     };
   },
 };
