@@ -26,20 +26,39 @@
     </ul>
   </div>
 
+   <div class="key">
+      你要搜索的关键词<span class="search-key"> {{ key }}</span>，为你找到{{ searchResult.length }}条数据
+    </div>
 
+  <div class="search-result">
+    <!-- 搜索结果 {{ searchResult }} -->
+    <post-list :postList="searchResult"></post-list>
+  </div>
 </template>
 
 <script>
-import { ref, onMounted, reactive } from "vue";
-import useHotKey from './useHotKey.js'
+import { ref, onMounted, reactive, toRefs } from "vue";
+import useHotKey from "./useHotKey.js";
+import PostList from "components/content/PostList/PostList.vue";
+import { search } from "network/search.js";
 
 export default {
+  name: "Search",
+  components: {
+    PostList,
+  },
   setup() {
     const key = ref("");
     let searchInputBox = ref(null);
 
-    const readySearch = () => {
+    const state = reactive({
+      searchResult: [],
+    });
+
+    const readySearch = async () => {
       console.log("用户搜索的关键词：", key.value);
+      const res = await search(key.value);
+      state.searchResult = res.data.post;
     };
 
     onMounted(() => {
@@ -56,6 +75,7 @@ export default {
       searchInputBox,
       hotKeys,
       hotKeyClick,
+      ...toRefs(state),
     };
   },
 };
@@ -76,5 +96,23 @@ export default {
 }
 input {
   width: 100%;
+}
+
+.hot-key ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.hot-key ul li {
+  list-style: none;
+  background-color: #ddd;
+  margin: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.search-key {
+  color: #d40;
 }
 </style>
