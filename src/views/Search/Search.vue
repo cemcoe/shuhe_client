@@ -29,7 +29,9 @@
   <div class="key">
     你要搜索的关键词<span class="search-key"> {{ key }}</span
     >，
-    {{ isLoading ? "正在为您检索。。。" : `为您找到${searchResult.length}条数据` }}
+    {{
+      isLoading ? "正在为您检索。。。" : `为您找到${searchResult.length}条数据`
+    }}
   </div>
 
   <div class="search-result">
@@ -40,7 +42,7 @@
 
 <script>
 import { ref, onMounted, reactive, toRefs, computed } from "vue";
-import { useStore } from 'vuex'
+import { useStore } from "vuex";
 import useHotKey from "./useHotKey.js";
 import PostList from "components/content/PostList/PostList.vue";
 
@@ -53,14 +55,14 @@ export default {
     const key = ref("");
     let searchInputBox = ref(null);
     // let isLoading = ref(false);
-    const store = useStore()
+    const store = useStore();
 
     const searchResult = computed(() => {
-      return store.state.searchResult
-    })
+      return store.state.searchResult;
+    });
     const isLoading = computed(() => {
-      return store.state.searchLoading
-    })
+      return store.state.searchLoading;
+    });
 
     const readySearch = () => {
       // isLoading.value = true;
@@ -68,7 +70,7 @@ export default {
       // const res = await search(key.value);
       // state.searchResult = res.data.post;
       // 交给action处理
-      store.dispatch("reqSearchResult", key)
+      store.dispatch("reqSearchResult", key);
       // isLoading.value = false;
     };
 
@@ -89,7 +91,6 @@ export default {
       hotKeyClick,
       // ...toRefs(state),
       isLoading,
-      
     };
   },
 };
@@ -108,8 +109,28 @@ export default {
 .center {
   flex: 1;
 }
+
 input {
+  border: 0px;
+  border-radius: 20px;
+  /* margin-left: 10px; */
+  box-sizing: border-box;
+  font-size: 14px;
+  outline-style: none;
   width: 100%;
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(247, 242, 242);
+  padding: 6px;
+  border-radius: 50px;
+  color: rgb(161, 160, 160);
+  font-size: 12px;
+  letter-spacing: 2px;
+  /* 缩进 */
+  text-indent: 12px;
+}
+input::placeholder {
+  color: rgb(161, 160, 160);
 }
 
 .hot-key ul {

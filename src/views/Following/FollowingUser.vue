@@ -51,7 +51,7 @@ a {
   align-items: center;
   flex-direction: column;
   padding: 6px;
-  border-bottom: 1px solid rgb(207, 198, 207);
+  /* border-bottom: 1px solid rgb(207, 198, 207); */
 }
 .left {
   flex: 0 0 70px;

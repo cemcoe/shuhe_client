@@ -7,16 +7,16 @@
       <div class="right">
         <div @click="commentSubmit" class="item">
           <cem-icon name="comment"></cem-icon>
-          <span>评论</span>
+          <!-- <span>评论</span> -->
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <cem-icon name="like"></cem-icon>
           <span>喜欢</span>
         </div>
         <div class="item">
           <cem-icon name="share"></cem-icon>
           <span>分享</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -81,9 +81,10 @@ export default {
   align-items: center;
 }
 .container .right {
-  flex: 0 0 180px;
+  flex: 0 0 50px;
   display: flex;
   justify-content: space-around;
+
 }
 .container .left {
   flex: 1;
@@ -92,14 +93,16 @@ export default {
 input {
   border: 0px;
   border-radius: 20px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   box-sizing: border-box;
   padding: 6px 16px;
   font-size: 14px;
 
   outline-style: none;
-  width: 90%;
-  background-color: rgb(240, 231, 231);
+  width: 96%;
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(245, 241, 241);
 }
 
 .right span {
