@@ -41,9 +41,9 @@ export default {
       title: "",
       content: "",
       postComments: [],
-      wordcount: '-',
-      viewcount: '-',
-      createdAt: '-',
+      wordcount: "-",
+      viewcount: "-",
+      createdAt: "-",
     });
 
     let author = reactive({
@@ -122,5 +122,26 @@ h2 {
 }
 .content:deep(a) {
   text-decoration: none;
+}
+.content:deep(pre) {
+  background-color: rgb(250, 243, 243);
+  overflow-y: hidden;
+}
+
+/* 滚动槽 */
+.content:deep(pre)::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.content:deep(pre)::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+}
+/* 滚动条滑块 */
+.content:deep(pre)::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 </style>
