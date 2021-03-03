@@ -39,10 +39,10 @@
 </template>
 
 <script>
-import { ref, onMounted, reactive, toRefs } from "vue";
+import { ref, onMounted, reactive, toRefs, computed } from "vue";
+import { useStore } from 'vuex'
 import useHotKey from "./useHotKey.js";
 import PostList from "components/content/PostList/PostList.vue";
-import { search } from "network/search.js";
 
 export default {
   name: "Search",
@@ -52,18 +52,24 @@ export default {
   setup() {
     const key = ref("");
     let searchInputBox = ref(null);
-    let isLoading = ref(false);
+    // let isLoading = ref(false);
+    const store = useStore()
 
-    const state = reactive({
-      searchResult: [],
-    });
+    const searchResult = computed(() => {
+      return store.state.searchResult
+    })
+    const isLoading = computed(() => {
+      return store.state.searchLoading
+    })
 
-    const readySearch = async () => {
-      isLoading.value = true;
+    const readySearch = () => {
+      // isLoading.value = true;
       console.log("用户搜索的关键词：", key.value);
-      const res = await search(key.value);
-      state.searchResult = res.data.post;
-      isLoading.value = false;
+      // const res = await search(key.value);
+      // state.searchResult = res.data.post;
+      // 交给action处理
+      store.dispatch("reqSearchResult", key)
+      // isLoading.value = false;
     };
 
     onMounted(() => {
@@ -78,10 +84,12 @@ export default {
       key,
       readySearch,
       searchInputBox,
+      searchResult,
       hotKeys,
       hotKeyClick,
-      ...toRefs(state),
+      // ...toRefs(state),
       isLoading,
+      
     };
   },
 };

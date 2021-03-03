@@ -3,6 +3,7 @@ import {
   followingUser,
   unfollowingUser,
 } from "network/user";
+import { search } from 'network/search'
 
 export default {
   async listfollowingUser(context) {
@@ -42,5 +43,22 @@ export default {
     // 触发mutations更改state
     context.commit('receive_following_user', followingUsers)
     console.log("用户关注列表更新成功");
+  },
+
+  // 搜索标题和正文中含有搜索词的文章
+  async reqSearchResult(context, q) {
+    // 更改搜索状态
+    context.commit('switch_search_status', true)
+    const result = await search(q)
+    console.log(result)
+    // 触发mutations更改state
+    if (result.status === 200) {
+      const searchResult = result.data.post
+      context.commit('receive_search_result', searchResult)
+      context.commit('switch_search_status', false)
+    } else {
+      context.commit('switch_search_status', false)
+      return 404
+    }
   },
 }

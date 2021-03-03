@@ -19,4 +19,12 @@ export default {
     state.followingUsers = followingUsers
     localStorage.setItem("followingUsers", JSON.stringify(followingUsers));
   },
+  // 更改搜索结果
+  receive_search_result(state, result) {
+    state.searchResult = result
+  },
+  // 更改搜索状态
+  switch_search_status(state, searchLoading) {
+    state.searchLoading = searchLoading
+  }
 }
