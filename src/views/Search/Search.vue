@@ -78,7 +78,7 @@ export default {
       searchInputBox.value.focus();
     });
 
-    const { hotKeys, hotKeyClick } = useHotKey(key);
+    const { hotKeys, hotKeyClick } = useHotKey(key, store);
 
     return {
       key,
