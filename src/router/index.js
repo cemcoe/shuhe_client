@@ -13,6 +13,7 @@ const UserFollower = () => import('@/views/User/UserFollower.vue')
 const Login = () => import('@/views/Login/Login.vue')
 const Editor = () => import('@/views/Editor/Editor.vue')
 const Writer = () => import('@/views/Writer/Writer.vue')
+const MyPost = () => import('@/views/My/MyPost.vue')
 
 const routes = [
   {
@@ -136,6 +137,14 @@ const routes = [
     meta: {
       requireAuth: true,
     }
+  },
+  {
+    path: '/mypost',
+    // name: 'Author',
+    component: MyPost,
+    meta: {
+      showFooter: false
+    },
   },
   {
     path: '/',
