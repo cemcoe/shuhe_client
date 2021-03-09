@@ -8,29 +8,60 @@
       <button @click="insert('* ')">*</button>
       <button @click="insert('- ')">-</button>
     </div>
-    <div class="setting">设置</div>
+    <div class="setting" @click="switchMeunStatus">设置</div>
   </div>
+  <ul v-show="showMenu" class="menu">
+    <li @click="saveToPrivatePost">保存为私密文章</li>
+    <li>待定菜单项1</li>
+    <li>待定菜单项2</li>
+    <li>待定菜单项3</li>
+    <li>待定菜单项4</li>
+  </ul>
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   name: "EditorPannel",
-  emits: ['insert'],
+  emits: ["insert"],
   setup(props, content) {
     const insert = (val) => {
-      console.log('insert', val)
-      content.emit('insert', val)
-    }
+      console.log("insert", val);
+      content.emit("insert", val);
+    };
+
+    let { showMenu, switchMeunStatus, saveToPrivatePost } = useMenu();
 
     return {
-      insert
-    }
+      insert,
+      switchMeunStatus,
+      showMenu,
+      saveToPrivatePost,
+    };
+  },
+};
+
+const useMenu = () => {
+  let showMenu = ref(true);
+
+  const switchMeunStatus = () => {
+    console.log("你点击了设置，为你切换菜单状态");
+    showMenu.value = !showMenu.value;
+  };
+
+  const saveToPrivatePost = () => {
+    console.log('将文章保存为私密')
   }
+
+  return {
+    showMenu,
+    switchMeunStatus,
+    saveToPrivatePost,
+  };
 };
 </script>
 
 <style scoped>
-
 button {
   border: none;
   margin: 0;
@@ -81,5 +112,27 @@ button {
   text-align: center;
   line-height: 49px;
   border-left: 1px solid #000;
+}
+.menu {
+  position: fixed;
+  right: 0px;
+  bottom: 49px;
+  line-height: 30px;
+  border-left: 1px solid #000;
+  left: 0px;
+  right: 0px;
+  font-size: 14px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  list-style: none;
+  margin: 0;
+  padding-left: 10px;
+  background-color: rgb(240, 232, 232);
+  border-bottom: 1px solid #000;
 }
 </style>
