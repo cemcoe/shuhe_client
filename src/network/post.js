@@ -68,3 +68,29 @@ export function gotoTrash(pid) {
   })
 }
 
+
+// 将文章放到私密文件夹
+export function gotoPrivate(pid) {
+  const post = {
+    "status": "-1"
+  }
+  return request({
+    method: "patch",
+    url: `/posts/${pid}`,
+    data: post,
+  })
+
+}
+
+// 将文章放到公开文件夹
+export function gotoPublic(pid) {
+  const post = {
+    "status": "1"
+  }
+  return request({
+    method: "patch",
+    url: `/posts/${pid}`,
+    data: post,
+  })
+}
+

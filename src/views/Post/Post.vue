@@ -1,5 +1,5 @@
 <template>
-  <post-header :isAuthor="isAuthor"></post-header>
+  <post-header :isAuthor="isAuthor" :postStatus="post.status"></post-header>
   <h2>{{ post.title }}</h2>
   <author-info :author="author" :isFollowing="isFollowing"></author-info>
   <post-info :postInfo="post"></post-info>
@@ -44,6 +44,7 @@ export default {
       wordcount: "-",
       viewcount: "-",
       createdAt: "-",
+      status: '',
     });
 
     let author = reactive({
@@ -69,6 +70,7 @@ export default {
       post.viewcount = data.viewcount;
       // TODO: format date
       post.createdAt = data.createdAt;
+      post.status = data.status
     };
 
     const getComments = async () => {
