@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { reactive, toRefs, onMounted } from "vue";
+import { useStore } from "vuex";
 import PostList from "components/content/PostList/PostList";
 import { getUserPosts } from "network/user";
 
@@ -41,9 +43,8 @@ export default {
   components: {
     PostList,
   },
-
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       publicPost: [],
       privatePost: [],
       status: "public",
@@ -51,32 +52,40 @@ export default {
         { id: 1, title: "公开文章", status: "public" },
         { id: 2, title: "私密文章", status: "private" },
       ],
-    };
-  },
-  methods: {
-    async getPublicPosts(uid) {
+    });
+
+    const store = useStore();
+
+    const getPublicPosts = async (uid) => {
       const res = await getUserPosts(uid, "public");
-      this.publicPost = res.data;
-    },
+      state.publicPost = res.data;
+    };
 
-    async getPrivatePosts(uid) {
+    const getPrivatePosts = async (uid) => {
       const res = await getUserPosts(uid, "private");
-      this.privatePost = res.data;
-    },
+      state.privatePost = res.data;
+    };
 
-    changeStatus(tab) {
-      if (this.status === tab.status) {
+    const changeStatus = (tab) => {
+      if (state.status === tab.status) {
         return;
       }
-      this.status = tab.status;
-      console.log(this.status);
-    },
-  },
+      state.status = tab.status;
+      console.log(state.status);
+    };
 
-  created() {
-    const uid = this.$store.state.user._id;
-    this.getPublicPosts(uid);
-    this.getPrivatePosts(uid);
+    onMounted(() => {
+      const uid = store.state.user._id;
+      getPublicPosts(uid);
+      getPrivatePosts(uid);
+    });
+
+    return {
+      ...toRefs(state),
+      getPublicPosts,
+      getPrivatePosts,
+      changeStatus,
+    };
   },
 };
 </script>
