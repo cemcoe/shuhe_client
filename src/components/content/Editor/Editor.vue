@@ -23,7 +23,10 @@
       ></textarea>
     </div>
 
-    <editor-pannel @insert="insert"></editor-pannel>
+    <editor-pannel
+      @insert="insert"
+      @saveToPrivatePost="saveToPrivatePost"
+    ></editor-pannel>
   </div>
 </template>
 
@@ -34,7 +37,7 @@ import { useRouter, onBeforeRouteLeave } from "vue-router";
 import usePost from "./usePost.js";
 import useInsertText from "./useInsertText.js";
 import EditorHeader from "./EditorHeader.vue";
-import EditorPannel from "./EditorPannel.vue"
+import EditorPannel from "./EditorPannel.vue";
 export default {
   name: "CemEditor",
   props: {
@@ -78,7 +81,9 @@ export default {
       }
     );
 
-    const { publish, preview, isNewPost, update } = usePost(state);
+    const { publish, preview, isNewPost, update, saveToPrivatePost } = usePost(
+      state
+    );
 
     const goBack = () => {
       // 如果在预览状态下点击，则切换为编辑状态
@@ -97,14 +102,14 @@ export default {
     };
 
     // 路由拦截
-    onBeforeRouteLeave(() => {
-      const answer = window.confirm("嗨伙计，你确定不再需要本页的数据了!");
-      if (answer) {
-        content.emit("routeLeave");
-      } else {
-        return false;
-      }
-    });
+    // onBeforeRouteLeave(() => {
+    //   const answer = window.confirm("嗨伙计，你确定不再需要本页的数据了!");
+    //   if (answer) {
+    //     content.emit("routeLeave");
+    //   } else {
+    //     return false;
+    //   }
+    // });
 
     return {
       ...toRefs(state),
@@ -114,6 +119,7 @@ export default {
       insert,
       isNewPost,
       update,
+      saveToPrivatePost,
     };
   },
 };

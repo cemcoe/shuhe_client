@@ -23,14 +23,14 @@
 import { ref } from "vue";
 export default {
   name: "EditorPannel",
-  emits: ["insert"],
+  emits: ["insert", "saveToPrivatePost"],
   setup(props, content) {
     const insert = (val) => {
       console.log("insert", val);
       content.emit("insert", val);
     };
 
-    let { showMenu, switchMeunStatus, saveToPrivatePost } = useMenu();
+    let { showMenu, switchMeunStatus, saveToPrivatePost } = useMenu(content);
 
     return {
       insert,
@@ -41,7 +41,7 @@ export default {
   },
 };
 
-const useMenu = () => {
+const useMenu = (content) => {
   let showMenu = ref(true);
 
   const switchMeunStatus = () => {
@@ -51,6 +51,9 @@ const useMenu = () => {
 
   const saveToPrivatePost = () => {
     console.log('将文章保存为私密')
+    // emit 交给主文件处理
+    content.emit('saveToPrivatePost')
+    
   }
 
   return {
