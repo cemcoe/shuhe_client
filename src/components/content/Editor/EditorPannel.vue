@@ -42,7 +42,7 @@ export default {
 };
 
 const useMenu = (content) => {
-  let showMenu = ref(true);
+  let showMenu = ref(false);
 
   const switchMeunStatus = () => {
     console.log("你点击了设置，为你切换菜单状态");
