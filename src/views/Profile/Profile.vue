@@ -15,10 +15,10 @@
           </router-link>
           <div class="follow">
             <router-link :to="'/u/' + user._id + '/following'">
-              <span class="follower">关注 {{user.following_count}}</span>
+              <span class="follower">关注 {{ user.following_count }}</span>
             </router-link>
             <router-link :to="'/u/' + user._id + '/follower'">
-              <span class="follower">粉丝{{user.follower_count}}</span>
+              <span class="follower">粉丝{{ user.follower_count }}</span>
             </router-link>
 
             <!-- <span class="fans">粉丝 233</span> -->
@@ -42,6 +42,17 @@
           <li>我的书架</li>
         </ul>
       </div>
+    </div>
+
+    <div class="cell">
+      <cem-cell title="我的钱包" value="0张优惠劵" />
+      <cem-cell title="活动" value="内容" />
+      <cem-cell title="每日任务" value="内容" />
+      <cem-cell title="我的小岛/专题/文集" value="内容" />
+      <cem-cell title="浏览历史" value="内容" />
+      <cem-cell title="开启夜间模式" value="内容" />
+      <cem-cell title="设置" value="内容" />
+      <cem-cell title="帮助与反馈" value="内容" label="有问题找这里" />
     </div>
 
     <div>
