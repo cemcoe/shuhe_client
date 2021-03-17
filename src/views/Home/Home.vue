@@ -3,7 +3,9 @@
     <div @click="$router.push('/search')">多喝热水，早睡早起</div>
   </div>
 
-  <div v-if="isLoading" class="loading">加载中。。。</div>
+  <div v-if="isLoading" class="loading">
+    <cem-loading></cem-loading>
+  </div>
 
   <post-list :postList="postList"></post-list>
 

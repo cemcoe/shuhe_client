@@ -6,7 +6,9 @@
       </template>
     </cem-nav-bar>
   </header>
-  <div v-if="isLoading" class="isloading">加载中。。。</div>
+  <div v-if="isLoading" class="isloading">
+    <cem-loading></cem-loading>
+  </div>
   <div v-else>
     <user-list :userList="userList"></user-list>
   </div>

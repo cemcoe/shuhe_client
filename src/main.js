@@ -3,11 +3,11 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { CemButton, CemIcon, CemNavBar } from 'cem-ui'
+import { CemButton, CemIcon, CemNavBar, CemLoading } from 'cem-ui'
 import './assets/css/reset.css'
 
 const app = createApp(App)
-app.use(CemButton).use(CemIcon).use(CemNavBar)
+app.use(CemButton).use(CemIcon).use(CemNavBar).use(CemLoading)
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {

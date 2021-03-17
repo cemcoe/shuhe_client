@@ -1,6 +1,8 @@
 <template>
   <user-header></user-header>
-  <div v-if="isLoading" class="loading">加载中。。。</div>
+  <div v-if="isLoading" class="loading">
+    <cem-loading></cem-loading>
+  </div>
   <div v-else>
     <user-info :userInfo="user"></user-info>
     <post-list :postList="postList"></post-list>

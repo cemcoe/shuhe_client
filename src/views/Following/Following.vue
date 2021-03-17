@@ -5,7 +5,7 @@
     :imgBaseUrl="imgBaseUrl"
   ></following-user>
   <div v-if="isLoading" class="loading">
-    加载中。。。
+    <cem-loading></cem-loading>
   </div>
   <post-list :postList="postList"></post-list>
 </template>
